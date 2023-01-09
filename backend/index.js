@@ -1,10 +1,12 @@
 const express = require("express");
 const { notes } = require("./data/data");
 const dotenv = require("dotenv");
+const cors = require("cors");
+const connection = require("./config/db");
 dotenv.config();
 const port = process.env.PORT || 5000;
 const app = express();
-
+app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -25,6 +27,12 @@ app.get("/api/notes/:id", (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`server is running on the port http://localhost:${port}/`);
+app.listen(port, async () => {
+  try {
+    await connection;
+    console.log(`server is running on the port http://localhost:${port}/`);
+  } catch (err) {
+    console.log("connection to be failed");
+    console.log(err);
+  }
 });
