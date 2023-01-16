@@ -7,9 +7,17 @@ import {
   NavDropdown,
   Navbar,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { getData } from "../utils/localStorage";
 
-function Header(props) {
+function Header({ setSearch }) {
+  const navigate = useNavigate();
+  let username_ls = getData("name");
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("name");
+    navigate("/");
+  };
   return (
     <Navbar bg="primary" variant="dark" expand="lg">
       <Container>
@@ -23,6 +31,7 @@ function Header(props) {
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
+                onChange={(e) => setSearch(e.target.value)}
               />
               <Button variant="dark" style={{ marginLeft: "10px" }}>
                 Search
@@ -30,14 +39,17 @@ function Header(props) {
             </Form>
           </Nav>
           <Nav style={{ maxHeight: "100px" }} navbarScroll>
-            <Link to="/addnotes">
+            <Link to="/mynotes">
               <Navbar.Brand>My Notes</Navbar.Brand>
             </Link>
-            <NavDropdown title="Udhaya" id="navbarScrollingDropdown">
+            <NavDropdown
+              title={`${username_ls ? username_ls : "User"}`}
+              id="navbarScrollingDropdown"
+            >
               <NavDropdown.Item href="#action3">My Profile</NavDropdown.Item>
 
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">Logout</NavDropdown.Item>
+              <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

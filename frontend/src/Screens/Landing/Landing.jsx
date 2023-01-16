@@ -16,7 +16,7 @@ function Landing(props) {
                   Login
                 </Button>
               </a>
-              <a href="/register">
+              <a href="/signup">
                 <Button
                   size="lg"
                   className="landingbutton"
