@@ -46,7 +46,7 @@ function Header({ setSearch }) {
               title={`${username_ls ? username_ls : "User"}`}
               id="navbarScrollingDropdown"
             >
-              <NavDropdown.Item href="#action3">My Profile</NavDropdown.Item>
+              <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>
 
               <NavDropdown.Divider />
               <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>

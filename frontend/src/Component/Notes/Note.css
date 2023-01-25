@@ -1,0 +1,9 @@
+.parent_Notes {
+    display: flex;
+}
+
+@media screen and (max-width:370px) {
+    .parent_Notes {
+        display: block;
+    }
+}

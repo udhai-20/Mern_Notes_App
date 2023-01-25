@@ -11,6 +11,7 @@ import { getData } from "../utils/localStorage";
 import Loading from "../Loading/Loading";
 import EditNotes from "../../Screens/EditNotes/EditNotes";
 // import notes from "../../data";
+import "./Note.css";
 function MyNotes({ search }) {
   console.log("env file", process.env);
   const dispatch = useDispatch();
@@ -57,7 +58,7 @@ function MyNotes({ search }) {
               return (
                 <Accordion key={el._id}>
                   <Card style={{ margin: 10 }}>
-                    <Card.Header style={{ display: "flex" }}>
+                    <Card.Header className="parent_Notes">
                       <span
                         // onClick={() => ModelShow(note)}
                         style={{
@@ -67,7 +68,6 @@ function MyNotes({ search }) {
                           cursor: "pointer",
                           alignSelf: "center",
                           fontSize: 18,
-                          border: "none",
                         }}
                       >
                         <Accordion.Header>{el.title}</Accordion.Header>
@@ -92,7 +92,8 @@ function MyNotes({ search }) {
                         <blockquote className="blockquote mb-0">
                           <p>{el.content}</p>
                           <footer className="blockquote-footer,text-muted">
-                            creaed-{new Date().toLocaleDateString()}
+                            created:
+                            {el.createdAt ? el.createdAt.split("T")[0] : ""}
                           </footer>
                         </blockquote>
                       </Card.Body>

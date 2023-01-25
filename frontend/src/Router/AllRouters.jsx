@@ -7,6 +7,7 @@ import Signup from "../Screens/Signup/Signup";
 import MyNotes from "../Component/Notes/MyNotes";
 import PrivateRouter from "./PrivateRouter";
 import CreateNotes from "../Screens/CreateNotes/CreateNotes";
+import Profile from "../Component/Profile/Profile";
 
 function AllRouters({ search }) {
   console.log("  search:", search);
@@ -24,14 +25,14 @@ function AllRouters({ search }) {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        {/* <Route
-          path="/createnote"
+        <Route
+          path="/profile"
           element={
             <PrivateRouter>
-              <CreateNotes />
+              <Profile />
             </PrivateRouter>
           }
-        /> */}
+        />
       </Routes>
     </>
   );
